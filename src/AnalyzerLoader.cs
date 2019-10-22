@@ -53,6 +53,36 @@ namespace StyleCopAnalyzers.CLI
                 analyzers.Add(analyzer);
             }
 
+            foreach (var analyzer in this.GetMeneesAnalyzers()) {
+                analyzers.Add(analyzer);
+            }
+
+            return analyzers.ToImmutable();
+        }
+
+        private ImmutableArray<DiagnosticAnalyzer> GetMeneesAnalyzers() {
+            var name = new AssemblyName("Menees.Analyzers");
+            var menees = AssemblyLoadContext.Default.LoadFromAssemblyName(name);
+
+            var diagnosticAnalyzerType = typeof(DiagnosticAnalyzer);
+            var analyzers = ImmutableArray.CreateBuilder<DiagnosticAnalyzer>();
+
+            foreach (var type in menees.GetTypes())
+            {
+                if (!type.IsSubclassOf(diagnosticAnalyzerType) || type.IsAbstract)
+                {
+                    continue;
+                }
+
+                var analyzer = (DiagnosticAnalyzer)Activator.CreateInstance(type);
+                if (!IsValidAnalyzer(analyzer, rulesets))
+                {
+                    continue;
+                }
+
+                analyzers.Add(analyzer);
+            }
+
             return analyzers.ToImmutable();
         }
 

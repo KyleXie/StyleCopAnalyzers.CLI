@@ -6,35 +6,40 @@
     <CodeAnalysisRuleSet>stylecop.ruleset</CodeAnalysisRuleSet>
     <LangVersion>7.3</LangVersion>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <Version>0.5.1</Version>
+    <Version>0.5.2</Version>
   </PropertyGroup>
   <PropertyGroup>
     <DefaultItemExcludes>$(DefaultItemExcludes);Sandbox\**</DefaultItemExcludes>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_0</DefineConstants>
     <DefineConstants>TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_0</DefineConstants>
-    <SignAssembly></SignAssembly>
-    <NoStdLib></NoStdLib>
+    <DefineConstants>TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_0</DefineConstants>
+    <NoStdLib>true</NoStdLib>
     <NoStdLib>true</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.4.3" />
+    <PackageReference Include="Menees.Analyzers.2017" Version="2.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Build.Locator" Version="1.2.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.0.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.0.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.1.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="3.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="3.1.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="System.Security.Permissions" Version="4.5.0" />
+
+    <PackageReference Include="StyleCopPlus" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +53,9 @@
     </Reference>
     <Reference Include="StyleCop.Analyzers.CodeFixes">
       <HintPath>..\packages\stylecop.analyzers\1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll</HintPath>
+    </Reference>
+    <Reference Include="Menees.Analyzers">
+      <HintPath>..\packages\menees.analyzers.2017\2.0.3\analyzers\dotnet\cs\Menees.Analyzers.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
